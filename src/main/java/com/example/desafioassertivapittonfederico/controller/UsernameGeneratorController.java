@@ -22,28 +22,19 @@ public class UsernameGeneratorController {
     ) {
 
         try {
-            //Valido que no vengan vacios los parametros
-            if (firstName.isEmpty() || secondName.isEmpty() || lastName.isEmpty() || userType.isEmpty()) {
-                throw new Exception("Todos los parámetros deben ser proporcionados");
-            }
-            //Los convierto a minuscula y paso al servicio generador de usuario
-            String lowerFirstName = firstName.toLowerCase();
-            String lowerSecondName = secondName.toLowerCase();
-            String lowerLastName = lastName.toLowerCase();
-            String lowerUserType = userType.toLowerCase();
-
+            //Valido que los parametros sean correctos
+            usernameGeneratorService.validateParameters(firstName, secondName, lastName, userType);
+            //Guardo en una variable el usuario generado a traves del servicio generador de usuarios
             String generatedUsername = usernameGeneratorService
                     .generateUsername(
-                            lowerFirstName,
-                            lowerSecondName,
-                            lowerLastName,
-                            lowerUserType);
+                            firstName,
+                            secondName,
+                            lastName,
+                            userType);
 
             return ResponseEntity.ok(generatedUsername);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
-
-
     }
 }
