@@ -68,7 +68,7 @@ public class UsernameGeneratorService {
 
     //Funcion recursiva que busca si existe el nombre de usuario con numeros adicionados
     //Si no existe lo crea y retorna
-    private String containsUsername(String username, int limitSizeUsername, int forSize) throws Exception {
+    public String containsUsername(String username, int limitSizeUsername, int forSize) throws Exception {
         try{
             //Si el username llegase a ser 0 o ex. quiere decir que se probaron todas las combinaciones
             if (username.length()==0 || username.equals("ex.")){
